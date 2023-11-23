@@ -7,6 +7,12 @@ start:
 setup:
 	pip install -r requirements.txt
 
+update:
+	pip freeze > requirements.txt
+
+start-docker:
+	sudo docker compose -f .docker/docker-compose.yml up -d 
+
 # Initialize your local database
 psql-up: 
 	docker compose -f .docker/docker-compose.yml up -d --build --force-recreate --remove-orphans db

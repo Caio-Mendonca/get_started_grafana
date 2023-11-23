@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-
+from prometheus_fastapi_instrumentator import Instrumentator
 from . import actions, models, schemas
 from .database import SessionLocal, engine
 
@@ -8,6 +8,7 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+Instrumentator().instrument(app).expose(app)
 
 # Dependency
 def get_db():
