@@ -11,11 +11,11 @@ update:
 	pip freeze > requirements.txt
 
 start-docker:
-	sudo docker compose -f .docker/docker-compose.yml up -d 
+	sudo docker-compose -f .docker/docker-compose.yml up -d --build 
 
 # Initialize your local database
 psql-up: 
-	docker compose -f .docker/docker-compose.yml up -d --build --force-recreate --remove-orphans db
+	sudo docker compose -f .docker/docker-compose.yml up -d --build --force-recreate --remove-orphans db
 # Remove your local database
 psql-down: 
 	sudo docker compose -f .docker/docker-compose.yml down -v --remove-orphans
