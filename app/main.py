@@ -8,7 +8,6 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-Instrumentator().instrument(app).expose(app)
 
 # Dependency
 def get_db():
@@ -40,3 +39,5 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
 
+
+Instrumentator().instrument(app).expose(app)
